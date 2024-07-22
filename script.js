@@ -6,6 +6,23 @@ const copyToClipboard = (event) => {
     const clickedDiv = event.target;
     const copyText = clickedDiv.textContent;
     console.log(copyText);
+    let inputEl = document.createElement('input');
+    inputEl.setAttribute('value', copyText);
+    document.body.appendChild(inputEl);
+    console.log(inputEl);
+    inputEl.select();
+    document.execCommand('copy');
+    inputEl.parentElement.removeChild(inputEl);
+    const popUp = document.createElement('p');
+    popUp.innerText = 'Copied';
+    popUp.classList.add('popUp');
+    clickedDiv.appendChild(popUp);
+    console.log(popUp);
+
+   setTimeout(() => {
+    popUp.style.display = 'none';
+   }, 2000);
+      
 }
 
 for(let i=0; i<30; i++){
@@ -20,12 +37,6 @@ for(let i=0; i<30; i++){
 
     colorContainerEl.addEventListener('click', copyToClipboard);
 }
-
-
-
-
-
-
 
 
 function selectedColor() {
